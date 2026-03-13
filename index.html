@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Class Check-in</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/html5-qrcode" defer></script>
+  </head>
+  <body>
+    <div class="background-glow" aria-hidden="true"></div>
+
+    <main class="layout">
+      <header class="hero">
+        <nav class="top-nav" aria-label="Main Navigation">
+          <a href="./index.html" aria-current="page">Check-in</a>
+          <a href="./history.html">History</a>
+        </nav>
+        <p class="kicker">Smart Attendance</p>
+        <h1>Class Check-in & Learning Reflection</h1>
+        <p>
+          Firebase project:
+          <span id="project-id" class="mono">midturm-6adfd</span>
+        </p>
+        <div id="firebase-status" class="status">Connecting Firebase...</div>
+      </header>
+
+      <section class="card">
+        <h2>Student</h2>
+        <label for="studentId">Student ID</label>
+        <input id="studentId" type="text" placeholder="e.g. 65012345" />
+      </section>
+
+      <section class="card">
+        <h2>Check-in (Before Class)</h2>
+        <form id="checkinForm">
+          <label for="checkinSessionId">Session ID (from QR)</label>
+          <div class="input-row">
+            <input id="checkinSessionId" type="text" required placeholder="e.g. CS101-WK3" />
+            <button type="button" class="secondary scan-btn" data-target="checkinSessionId">Scan QR</button>
+          </div>
+
+          <label for="prevTopic">Previous class topic</label>
+          <textarea id="prevTopic" rows="2" required></textarea>
+
+          <label for="expectedTopic">Expected topic today</label>
+          <textarea id="expectedTopic" rows="2" required></textarea>
+
+          <label for="moodBefore">Mood before class (1-5)</label>
+          <input id="moodBefore" type="number" min="1" max="5" value="3" required />
+
+          <button type="submit">Check in</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Finish Class (After Class)</h2>
+        <form id="checkoutForm">
+          <label for="checkoutSessionId">Session ID (from QR)</label>
+          <div class="input-row">
+            <input id="checkoutSessionId" type="text" required placeholder="e.g. CS101-WK3" />
+            <button type="button" class="secondary scan-btn" data-target="checkoutSessionId">Scan QR</button>
+          </div>
+
+          <label for="learnedToday">What did you learn today?</label>
+          <textarea id="learnedToday" rows="2" required></textarea>
+
+          <label for="classFeedback">Feedback</label>
+          <textarea id="classFeedback" rows="2" required></textarea>
+
+          <button type="submit">Finish class</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Latest Activity</h2>
+        <ul id="activityList"></ul>
+      </section>
+    </main>
+
+    <div id="qrModal" class="modal" hidden>
+      <div class="modal-card">
+        <h3>Scan Classroom QR</h3>
+        <p class="modal-note">อนุญาตกล้อง แล้วหันกล้องไปที่ QR ของห้องเรียน</p>
+        <div id="qr-reader"></div>
+        <button id="closeQrModal" type="button" class="secondary">Close Scanner</button>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance History</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="background-glow" aria-hidden="true"></div>
+
+    <main class="layout">
+      <header class="hero">
+        <nav class="top-nav" aria-label="Main Navigation">
+          <a href="./index.html">Check-in</a>
+          <a href="./history.html" aria-current="page">History</a>
+        </nav>
+        <p class="kicker">Smart Attendance</p>
+        <h1>Student History</h1>
+        <p>ค้นหาประวัติเช็กอินและเช็กเอาต์ตาม Student ID</p>
+        <div id="firebase-status" class="status">Connecting Firebase...</div>
+      </header>
+
+      <section class="card">
+        <h2>Search</h2>
+        <form id="historyForm">
+          <label for="studentId">Student ID</label>
+          <div class="input-row">
+            <input id="studentId" type="text" required placeholder="e.g. 65012345" />
+            <button type="submit" class="secondary">Load</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Check-ins</h2>
+        <div id="checkinHistory" class="history-list"></div>
+      </section>
+
+      <section class="card">
+        <h2>Check-outs</h2>
+        <div id="checkoutHistory" class="history-list"></div>
+      </section>
+    </main>
+
+    <script type="module" src="./history.js"></script>
+  </body>
+</html>
